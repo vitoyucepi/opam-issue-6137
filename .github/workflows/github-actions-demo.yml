@@ -1,0 +1,14 @@
+name: CI
+on: 
+  - push
+jobs:
+  container-test-job:
+    runs-on: ubuntu-latest
+    container:
+      image: ocaml/opam:ubuntu-24.04-ocaml-4.14
+    steps:
+      - name: Test
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y pkg-config libavcodec-dev libavdevice-dev libavfilter-dev libavformat-dev libavutil-dev libswresample-dev libswscale-dev
+          opam install ffmpeg prometheus-app

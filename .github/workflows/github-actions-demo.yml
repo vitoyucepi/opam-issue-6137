@@ -10,7 +10,8 @@ jobs:
       - name: Test
         run: |
           cd /home/opam
+          ls -al
           eval $(opam env)
-          sudo apt-get update
-          sudo apt-get install --no-install-recommends -y pkg-config libavcodec-dev libavdevice-dev libavfilter-dev libavformat-dev libavutil-dev libswresample-dev libswscale-dev
-          opam install ffmpeg prometheus-app
+          # sudo apt-get update
+          # sudo apt-get install --no-install-recommends -y pkg-config libavcodec-dev libavdevice-dev libavfilter-dev libavformat-dev libavutil-dev libswresample-dev libswscale-dev
+          # opam install ffmpeg prometheus-app

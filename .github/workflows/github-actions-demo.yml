@@ -41,6 +41,6 @@ jobs:
       - name: Build image
         uses: docker/build-push-action@v6
         with:
-          context: "./alpine_3_20"
+          context: "./alpine_repos_opam"
           build-args: |
             OCAML_VERSION=${{ matrix.ocaml_version }}

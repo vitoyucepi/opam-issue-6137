@@ -2,14 +2,23 @@ name: CI
 on: 
   - push
 jobs:
-  container-test-job:
+  docker:
     runs-on: ubuntu-latest
-    container:
-      image: ocaml/opam:ubuntu-24.04-ocaml-4.14
     steps:
-      - name: Test
-        run: |
-          eval $(opam env --root=/home/opam/.opam --set-root)
-          sudo apt-get update
-          sudo apt-get install --no-install-recommends -y pkg-config libavcodec-dev libavdevice-dev libavfilter-dev libavformat-dev libavutil-dev libswresample-dev libswscale-dev
-          opam install ffmpeg prometheus-app
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: t1
+        uses: docker/build-push-action@v6
+        with:
+          context: "./alpine_3_20"
+          build-args:
+            - OPAM_VERSION=2.1.6
+            - OCAML_VERSION=4.14.2
+      - name: t2
+        uses: docker/build-push-action@v6
+        with:
+          context: "./alpine_3_20"
+          build-args:
+            - OPAM_VERSION=2.2.0
+            - OCAML_VERSION=4.14.2
+            

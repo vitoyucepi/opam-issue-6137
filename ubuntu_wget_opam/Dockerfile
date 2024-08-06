@@ -5,7 +5,7 @@ ARG OCAML_VERSION
 
 RUN set -eux; \
       apt-get update; \
-      apt-get install gcc g++ make patch;
+      apt-get install --no-install-recommends -y gcc g++ make patch;
 
 RUN set -eux; \
       wget -O /usr/local/bin/opam --progress=dot:giga "https://github.com/ocaml/opam/releases/download/$OPAM_VERSION/opam-$OPAM_VERSION-x86_64-linux"; \

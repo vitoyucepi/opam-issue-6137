@@ -44,6 +44,25 @@ jobs:
           context: "./ubuntu_repos_opam"
           build-args: |
             OCAML_VERSION=${{ matrix.ocaml_version }}
+  ubuntu_ocaml_opam:
+    strategy:
+      matrix:
+        ocaml_version:
+          - "4.14"
+          - "5.2"
+      fail-fast: false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: "./ubuntu_ocaml_opam"
+          build-args: |
+            OCAML_VERSION=${{ matrix.ocaml_version }}
   alpine_wget_opam:
     strategy:
       matrix:

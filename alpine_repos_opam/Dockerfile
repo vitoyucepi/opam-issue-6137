@@ -8,5 +8,5 @@ RUN set -eux; \
       opam init --no-setup --disable-sandboxing --compiler ocaml-base-compiler."$OCAML_VERSION";
 
 RUN set -eux; \
-      apk add --no-cache bash ffmpeg-dev gmp-dev; \
+      apk add --no-cache pkgconf bash ffmpeg-dev gmp-dev; \
       opam install --yes prometheus-app ffmpeg;

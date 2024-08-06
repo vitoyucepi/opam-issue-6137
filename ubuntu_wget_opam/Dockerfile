@@ -12,6 +12,7 @@ RUN set -eux; \
         patch \
         unzip \
         wget \
+        bzip2 \
         ca-certificates \
       ;
 

@@ -3,22 +3,25 @@ on:
   - push
 jobs:
   docker:
+    strategy:
+      matrix:
+        opam_version:
+          - "2.1.6"
+          - "2.2.0"
+        ocaml_version:
+          - "4.14.2"
+          - "5.2.0"
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-      - name: t1
+      - name: Build image
         uses: docker/build-push-action@v6
         with:
           context: "./alpine_3_20"
           build-args: |
-            OPAM_VERSION=2.1.6
-            OCAML_VERSION=4.14.2
-      - name: t2
-        uses: docker/build-push-action@v6
-        with:
-          context: "./alpine_3_20"
-          build-args:
-            OPAM_VERSION=2.2.0
-            OCAML_VERSION=4.14.2
+            OPAM_VERSION="${{ matrix.opam_version }}"
+            OCAML_VERSION="${{ matrix.ocaml_version }}"
             

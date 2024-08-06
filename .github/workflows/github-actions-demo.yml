@@ -22,6 +22,6 @@ jobs:
         with:
           context: "./alpine_3_20"
           build-args: |
-            OPAM_VERSION="${{ matrix.opam_version }}"
-            OCAML_VERSION="${{ matrix.ocaml_version }}"
+            OPAM_VERSION=${{ matrix.opam_version }}
+            OCAML_VERSION=${{ matrix.ocaml_version }}
             

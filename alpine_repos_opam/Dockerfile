@@ -1,4 +1,4 @@
-FROM alpine:3.20 as base
+FROM alpine:3.20
 
 ARG OCAML_VERSION
 
